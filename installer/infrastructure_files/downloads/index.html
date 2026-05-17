@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VPN - Installation</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f0f0f; color: #fff; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .container { max-width: 800px; padding: 40px 20px; }
+        .logo { text-align: center; margin-bottom: 40px; }
+        .logo h1 { font-size: 2.5em; color: #f97316; }
+        .logo p { color: #888; margin-top: 8px; }
+        .card { background: #1a1a1a; border-radius: 12px; padding: 30px; margin-bottom: 20px; border: 1px solid #2a2a2a; }
+        .card h2 { color: #f97316; margin-bottom: 20px; font-size: 1.2em; }
+        .step { display: flex; gap: 15px; margin-bottom: 20px; align-items: flex-start; }
+        .step-num { background: #f97316; color: #fff; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0; }
+        .step-content h3 { margin-bottom: 8px; font-size: 1em; }
+        code { background: #0f0f0f; padding: 12px 16px; border-radius: 8px; display: block; font-size: 0.85em; color: #4ade80; border: 1px solid #2a2a2a; word-break: break-all; cursor: pointer; position: relative; }
+        code:hover::after { content: "Copier"; position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: #f97316; padding: 3px 8px; border-radius: 4px; font-size: 0.8em; color: white; }
+        .badge { display: inline-block; background: #1e3a1e; color: #4ade80; padding: 3px 10px; border-radius: 20px; font-size: 0.8em; margin-bottom: 15px; }
+        .platforms { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 15px; }
+        .platform { background: #0f0f0f; border: 1px solid #2a2a2a; border-radius: 8px; padding: 15px; text-align: center; font-size: 0.85em; color: #888; }
+        .platform span { display: block; font-size: 1.5em; margin-bottom: 5px; }
+    </style>
+<script>
+// Si déjà connecté, rediriger vers le dashboard
+fetch('/api/v1/users/me', {credentials: 'include'})
+  .then(r => { if(r.ok) window.location.href = '/peers'; })
+  .catch(() => {});
+</script>
+</head>
+<body>
+<div class="container">
+    <div class="logo">
+        <h1>🔒 VPN Privé</h1>
+        <p>Connectez-vous de façon sécurisée au réseau</p>
+    </div>
+
+    <div class="card">
+        <span class="badge">✓ Recommandé</span>
+        <h2>🐧 Linux — Installation automatique</h2>
+        <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+                <h3>Exécuter le script d'installation</h3>
+                <code onclick="navigator.clipboard.writeText(this.innerText)">curl -fsSL https://vp376.net/downloads/install.sh | bash -s -- https://vp376.net 4C786BF0-EEB3-4A5C-83C5-368119AE38CC</code>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+                <h3>C'est tout ! Vous êtes connecté.</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>📱 Mobile & Desktop</h2>
+        <p style="color:#888; margin-bottom:15px;">Téléchargez l'app NetBird et connectez-vous avec :</p>
+        <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+                <h3>Management URL</h3>
+                <code onclick="navigator.clipboard.writeText(this.innerText)">https://vp376.net</code>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+                <h3>Setup Key</h3>
+                <code onclick="navigator.clipboard.writeText(this.innerText)">4C786BF0-EEB3-4A5C-83C5-368119AE38CC</code>
+            </div>
+        </div>
+        <div class="platforms">
+            <div class="platform"><span>🍎</span>iOS / macOS</div>
+            <div class="platform"><span>🤖</span>Android</div>
+            <div class="platform"><span>🪟</span>Windows</div>
+        </div>
+    </div>
+</div>
+<script>
+document.querySelectorAll('code').forEach(el => {
+    el.addEventListener('click', () => {
+        navigator.clipboard.writeText(el.innerText);
+        el.style.borderColor = '#4ade80';
+        setTimeout(() => el.style.borderColor = '#2a2a2a', 1000);
+    });
+});
+</script>
+</body>
+</html>

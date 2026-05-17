@@ -1,0 +1,31 @@
+# Go
+*.exe
+*.test
+*.out
+/vendor/
+/dist/
+
+# Node
+node_modules/
+.next/
+out/
+*.log
+
+# Secrets
+*.env
+*.pem
+*.key
+setup.env
+config.yaml
+acme.json
+CF_TOKEN
+
+# Build artifacts
+netbird-server
+netbird-mgmt
+combined/netbird-server
+
+# Docker
+.docker/
+installer/infrastructure_files/downloads/netbird
+installer/infrastructure_files/downloads/downloads/netbird
